@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MathWiz</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+        integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <header class="header">
+        <h1>MathWiz</h1>
+    </header>
+
+    <div id="namePopup" class="popup">
+        <div class="popup-content">
+            <h2>Please enter your name:</h2>
+            <input type="text" id="userName" placeholder="Your Name">
+            <button onclick="setName()">Submit</button>
+        </div>
+    </div>
+
+    <div class="container">
+        <h1 id="greet" class="greet-hidden"></h1>
+        <nav>
+            <div style="display: flex; align-items: center; gap: 10px;">
+                <i class="fa-regular fa-clock" style="color: blue;"></i>
+                <h1 id="time"></h1>
+            </div>
+            <div style="display: flex; align-items: center; gap: 10px;">
+                <i class="fa-solid fa-heart-pulse" style="color: red;"></i>
+                <h1 id="recover"></h1>
+            </div>
+        </nav>
+        <div class="nav">
+            <h1 id="firstNum"></h1>
+            <h1 id="operation"></h1>
+            <h1 id="secondNum"></h1>
+        </div>
+        <input type="text" id="answer">
+        <div class="btn">
+            <button onclick="check(eval(ans))">Check Answer</button>
+            <button onclick="skip()" style="background-color: red;">Skip Question</button>
+            <button onclick="upd()"
+                style="background-color: rgb(149, 149, 113); color: rgb(255, 255, 255);">Recover 10+</button>
+        </div>
+    </div>
+    <footer class="footer">
+        Developed with <span class="heart">&#10084;</span> by Somrit
+    </footer>
+    <script src="script.js"></script>
+</body>
+
+</html>
