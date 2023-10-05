@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>MathWiz</title>
+    <title>Maths Quiz Game</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
         integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw=="
         crossorigin="anonymous" referrerpolicy="no-referrer" />
@@ -15,7 +15,6 @@
     <header class="header">
         <h1>MathWiz</h1>
     </header>
-
     <div id="namePopup" class="popup">
         <div class="popup-content">
             <h2>Please enter your name:</h2>
@@ -27,13 +26,15 @@
     <div class="container">
         <h1 id="greet" class="greet-hidden"></h1>
         <nav>
-            <div style="display: flex; align-items: center; gap: 10px;">
+            <div style="display: flex;
+            align-items: center; gap: 10px;">
                 <i class="fa-regular fa-clock" style="color: blue;"></i>
                 <h1 id="time"></h1>
             </div>
-            <div style="display: flex; align-items: center; gap: 10px;">
+            <div style="display: flex;
+            align-items: center; gap: 10px;">
                 <i class="fa-solid fa-heart-pulse" style="color: red;"></i>
-                <h1 id="recover"></h1>
+                <h1 id="lifeline"></h1>
             </div>
         </nav>
         <div class="nav">
@@ -45,14 +46,15 @@
         <div class="btn">
             <button onclick="check(eval(ans))">Check Answer</button>
             <button onclick="skip()" style="background-color: red;">Skip Question</button>
-            <button onclick="upd()"
-                style="background-color: rgb(149, 149, 113); color: rgb(255, 255, 255);">Recover 10+</button>
+            <button onclick="upd()" style="background-color: yellow; color: black;">Lifelines 10+</button>
         </div>
     </div>
+    <script src="script.js"></script>
+    <script src='sweetalert2.all.min.js'></script>
+    <script src=' https://cdn.jsdelivr.net/npm/sweetalert2@11'></script>
     <footer class="footer">
         Developed with <span class="heart">&#10084;</span> by Somrit
     </footer>
-    <script src="script.js"></script>
 </body>
 
 </html>

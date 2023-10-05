@@ -7,9 +7,9 @@ function show() {
         time -= 1
         document.getElementById('time').innerHTML = time
     }, 1000)
-    liflines = localStorage.getItem("recover") || 10
-    localStorage.setItem("recover", liflines)
-    document.getElementById("recover").innerHTML = localStorage.getItem("recover") || 10
+    liflines = localStorage.getItem("lifelines") || 10
+    localStorage.setItem("lifelines", liflines)
+    document.getElementById("lifeline").innerHTML = localStorage.getItem("lifelines") || 10
     var first = Math.ceil(Math.random() * 50) + 1
     var sec = Math.ceil(Math.random() * 50) + 1
     var op = Math.floor(Math.random() * 3)
@@ -20,6 +20,37 @@ function show() {
     console.log(eval(ans));
 }
 show()
+
+
+var enteredName = sessionStorage.getItem("enteredName");
+
+if (!enteredName) {
+    const namePopup = document.getElementById('namePopup');
+    const userNameInput = document.getElementById('userName');
+    const greet = document.getElementById('greet');
+
+    function setName() {
+        const userName = userNameInput.value;
+        if (userName.trim() !== '') {
+            greet.innerText = `Hello, ${userName} 👋`;
+            greet.classList.remove('greet-hidden');
+            namePopup.style.display = 'none';
+            sessionStorage.setItem("enteredName", userName); // Store the name for this session
+        }
+    }
+
+    const submitButton = document.querySelector('#namePopup button');
+    submitButton.addEventListener('click', setName);
+
+    namePopup.style.display = 'flex'; // Show the name popup initially
+} else {
+    // If the name has been entered previously, display it
+    const greet = document.getElementById('greet');
+    greet.innerText = `Hello, ${enteredName} 👋`;
+    greet.classList.remove('greet-hidden');
+}
+
+
 function check(ans) {
     if (liflines > 0) {
         if (time > 0) {
@@ -27,14 +58,14 @@ function check(ans) {
             if (document.getElementById("answer").value.length > 0) {
                 if (document.getElementById("answer").value == ans) {
                     liflines = Number(liflines) + 1
-                    localStorage.setItem("recover", liflines)
+                    localStorage.setItem("lifelines", liflines)
                     Swal.fire('Correct Answer', '', 'success').then(()=>{
                         location.reload()
                     })
                 }
                 else {
                     liflines -= 1
-                    localStorage.setItem("recover", liflines)
+                    localStorage.setItem("lifelines", liflines)
                     Swal.fire('Wrong', `The Correct answer was ${eval(ans)}`, 'error').then(()=>{
                         location.reload()
                     })
@@ -52,38 +83,18 @@ function check(ans) {
         Swal.fire('Life Lines Finished', 'Got no more Life line Get some by watching ad', 'info')
     }
 }
+
 function skip() {
     if (liflines > 0) {
         liflines -= 1
-        localStorage.setItem("recover", liflines)
+        localStorage.setItem("lifelines", liflines)
         location.reload()
-    }    
+    }
     else {
         Swal.fire('Life Lines Finished', 'Got no more Life line Get some by watching ad', 'info')
 
     }
 }
-
-document.addEventListener('DOMContentLoaded', function () {
-    const namePopup = document.getElementById('namePopup');
-    const userNameInput = document.getElementById('userName');
-    const greet = document.getElementById('greet');
-    function showPopup() {
-        namePopup.style.display = 'flex';
-    }
-    function setName() {
-        const userName = userNameInput.value;
-        if (userName.trim() !== '') {
-            greet.innerText = `Hello, ${userName} 👋`;
-            greet.classList.remove('greet-hidden');
-            namePopup.style.display = 'none';
-        }
-    }
-    const submitButton = document.querySelector('#namePopup button');
-    submitButton.addEventListener('click', setName);
-    showPopup();
-});
-
 
 
 function upd() {
@@ -106,7 +117,7 @@ function upd() {
             }
         }).then((result) => {
             if (result.dismiss === Swal.DismissReason.timer) {
-                localStorage.setItem("recover", 10)
+                localStorage.setItem("lifelines", 10)
                 Swal.fire('+10', 'Life line increased successfully', 'success').then(() => {
                     location.reload()
                 })
@@ -114,9 +125,34 @@ function upd() {
         })
     }
     else{
-        Swal.fire('You Still Have Them', 'You can only use this option once your recovery gets below 5', 'info')
+        Swal.fire('YOu can do it', 'You can only use this option once your lifeline gets below 5', 'info')
     }
 }
+
+document.addEventListener('DOMContentLoaded', function () {
+    const namePopup = document.getElementById('namePopup');
+    const userNameInput = document.getElementById('userName');
+    const greet = document.getElementById('greet');
+
+    function showPopup() {
+        namePopup.style.display = 'flex';
+    }
+
+    function setName() {
+        const userName = userNameInput.value;
+        if (userName.trim() !== '') {
+            greet.innerText = `Hello, ${userName} 👋`;
+            greet.classList.remove('greet-hidden');
+            namePopup.style.display = 'none';
+            namePopupShown = true;
+        }
+    }
+
+    const submitButton = document.querySelector('#namePopup button');
+    submitButton.addEventListener('click', setName);
+});
+
+
 function checkTime() {
     if (time <= 0) {
         time = 30
